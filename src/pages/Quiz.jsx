@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PreguntaCard from '../components/PreguntaCard';
 import BarraProgreso from '../components/BarraProgreso';
 import Cronometro from '../components/Cronometro';
@@ -32,6 +33,7 @@ const PREGUNTAS_MOCK = [
 const TIEMPO_INICIAL_SEGUNDOS = 300; // 5 minutos — vendrá de la config del usuario al generar el quiz
 
 export default function Quiz() {
+  const navigate = useNavigate();
   const [indiceActual, setIndiceActual] = useState(0);
   const [seleccionada, setSeleccionada] = useState(null);
   const [calificada, setCalificada] = useState(false);
@@ -57,6 +59,7 @@ export default function Quiz() {
     if (esUltima) {
       // Aquí se dispararía la llamada a calificarQuiz → evento "QuizCompletado"
       console.log('Quiz terminado', respuestas);
+      navigate('/resultado');
       return;
     }
 
